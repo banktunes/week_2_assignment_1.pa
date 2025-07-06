@@ -1,0 +1,57 @@
+expenses = [
+    ["Transportation", 85000],
+    ["Food", 200000]
+]
+
+while True:
+    option = input("1. Add expense. \n2. Show total expense.\n3. Show all expenses. \n4. Delete expense. \n5. Exit. \n(choose 1 | 2 | 3 | 4 | 5) : ")
+
+    if option == "1":
+        expense = input("Write your expense: ")
+        amount = input("Write the amount of the expense: ")
+        try:
+            expenses.append([expense, float(amount)])
+            print("Expense is successfully added.")
+        except ValueError:
+            print("Invalid amount. Please enter a number.")
+
+    elif option == "2":
+        total_amount = 0
+        for exp in expenses:
+            total_amount += exp[1]
+        if total_amount == 0:
+            print(f"{'--' * 21}\nYou are broke. You need to work smart. Make connections. \n{'--' * 21}")
+        else:
+            print(f"{'--' * 21}\nTotal Expenses : {total_amount}\n{'--' * 21}")
+
+    elif option == "3":
+        for exp in expenses:
+            print(f"{'--' * 21}\nExpense: {exp[0]}, Amount: {exp[1]}\n{'--' * 21}")
+
+    elif option == "4":
+        expense_name = input("Enter the expense name to delete: ")
+        found = False
+        for i, exp in enumerate(expenses):
+            if exp[0].lower() == expense_name.lower():
+                expenses.pop(i)
+                found = True
+                print(f"{'--' * 21}\nExpense '{expense_name}' deleted successfully.\n{'--' * 21}")
+                break
+        if not found:
+            print(f"{'--' * 21}\nExpense '{expense_name}' not found.\n{'--' * 21}")
+
+    elif option == "5":
+        choice = input("Are you sure you want to exit? (Yes/No): ")
+        if choice.lower() == "yes":
+            print(f"{'--' * 21}\nLeaving the expense tracker.\n{'--' * 21}")
+            break
+        elif choice.lower() == "no":
+            continue
+        else:
+            print("Invalid option. Please enter 'Yes' or 'No'.")
+    else:
+        print("Invalid option. Please choose a number from the options above.")
+
+
+
+
