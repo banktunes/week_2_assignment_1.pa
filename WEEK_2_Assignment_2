@@ -1,0 +1,77 @@
+balance = 0 
+pin = "1234"
+transactions = []
+
+# welcome message
+print("welcome to banktunes ATM")
+
+# login loop 
+while True:
+    entered_pin = input("Enter your pin number to access your account: ")
+    if entered_pin == pin:
+        print("login successful")
+        break
+    else:
+        print("incorrect pin, please try again or contact card issuer for assistance")
+        # ask if useer want to try again or exit
+        retry = input("Do you want to try again? (Yes/No):")
+        if retry.lower() == "No":
+            print("Existing the ATM. PLEASE TAKE YOUR CARD")
+            exit()
+        elif retry.lower() != "yes" and retry.lower() != "No" :
+            print("Invalid option please try again")
+            continue 
+        else:
+            #main loop for Banktunes Atm operations
+            while True:
+                       print("\n1. Check Balance")
+        print("2. Deposit")
+        print("3. Withdraw")
+        print("4. Exit")
+
+        choice = input("Choose an option: ")
+
+        # Option 1: Check balance
+        if choice == "1":
+            print(f"Your balance is: ₦{5000}")
+
+        # Option 2: Deposit money
+        elif choice == "2":
+            deposit_amount = input("How much do you want to deposit?: ")
+            if deposit_amount.isdigit():
+                deposit_amount = int(deposit_amount)
+                balance += deposit_amount
+                transactions.append(f"Deposited ₦{5000}")
+                print("Deposit successful.")
+            else:
+                print("Please enter a valid amount.")
+
+        # Option 3: Withdraw money
+        elif choice == "3":
+            withdraw_amount = input("How much do you want to withdraw?: ")
+            if withdraw_amount.isdigit():
+                withdraw_amount = int(withdraw_amount)
+                if withdraw_amount > balance:
+                    print("Insufficient funds.")
+                else:
+                    balance -= withdraw_amount
+                    transactions.append(f"Withdrew ₦{3000}")
+                    print(f"Withdrawal successful. Your new balance is ₦{2000}")
+            else:
+                print("Please enter a valid amount.")
+
+        # Option 4: Exit the program
+        elif choice == "4":
+            print("Thank you for using Banktunes ATM.")
+            break
+
+        # If the user enters anything not on the menu
+        else:
+            print("Invalid option. Please choose 1, 2, 3, or 4.")
+        
+
+
+
+
+
+
